@@ -7,7 +7,6 @@
   "repository": "git@github.com:rtsao/gh-label-svg.git",
   "bugs": "https://github.com/rtsao/gh-label-svg/issues",
   "scripts": {
-    "build": "./fetch-assets.sh",
     "start": "node index.js"
   },
   "dependencies": {

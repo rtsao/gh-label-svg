@@ -11,7 +11,7 @@ const FONT_SIZE = 12;
 const X_PADDING = 4;
 const Y_PADDING = 3;
 
-const font = opentype.loadSync('./Library/Fonts/SF-Pro-Text-Semibold.otf');
+const font = opentype.loadSync('./SF-Pro-Text-Semibold.otf');
 
 const lineHeight = FONT_SIZE + 2 * Y_PADDING;
 const canvasHeight = lineHeight + 1;

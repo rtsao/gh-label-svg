@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
           calcWidth(text),
           stringifyHex(rgb),
           calcShadow(rgb),
-          isDarkColor(rgb)
+          isDarkColor(rgb) ? '#fff' : '#000'
         )
       );
     }
@@ -43,14 +43,12 @@ const server = http.createServer((req, res) => {
 
 server.listen(8000);
 
-function svg(text, width, fg, bg, dark) {
+function svg(text, width, fg, bg, fill) {
   const paddedWidth = width + 2 * X_PADDING;
   return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="${paddedWidth}" height="${canvasHeight}">
 <rect x="0" y="1" width="${paddedWidth}" height="${lineHeight}" rx="3" fill="${bg}" />
 <rect x="0" y="0" width="${paddedWidth}" height="${lineHeight}" rx="3" fill="${fg}" />
-<text text-anchor="left" fill="${dark
-    ? '#fff'
-    : '#000'}" x="${X_PADDING}" dy="0.39em" y="9" textLength="${width}" style="font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;text-rendering:geometricPrecision;">${text}</text>
+<text fill="${fill}" x="${X_PADDING}" dy="0.39em" y="9" textLength="${width}" style="font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;text-rendering:geometricPrecision;">${text}</text>
 </svg>
 `;
 }
@@ -81,7 +79,7 @@ function isDarkColor(rgb) {
 
 function stringifyHex(color) {
   const [r, g, b] = color.values;
-  return `#${((b | g << 8 | r << 16) | 1 << 24).toString(16).slice(1)}`;
+  return `#${(b | (g << 8) | (r << 16) | (1 << 24)).toString(16).slice(1)}`;
 }
 
 function calcShadow(color) {

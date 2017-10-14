@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "color-composite": "^0.1.0",
-    "color-parse": "^1.3.4",
+    "color-measure": "^1.0.1",
     "color-stringify": "^1.2.1",
     "opentype.js": "^0.7.3"
   },

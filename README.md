@@ -9,6 +9,14 @@ I wanted to embed GitHub labels into GitHub markdown previews, but arbitrary HTM
 
 ## Examples
 
-![example label](https://gh-label-svg.now.sh/label.svg?text=super%20cool&color=5E35B1)
-![example label](https://gh-label-svg.now.sh/label.svg?text=microservice&color=1976D2)
-![example label](https://gh-label-svg.now.sh/label.svg?text=wow&color=E64A19)
+`https://gh-label-svg.now.sh/label.svg?color=5E35B1&text=super%20cool`
+
+![example label](https://gh-label-svg.now.sh/label.svg?color=5E35B1&text=super%20cool)
+
+`https://gh-label-svg.now.sh/label.svg?color=1976D2&text=microservice`
+
+![example label](https://gh-label-svg.now.sh/label.svg?color=1976D2&text=microservice)
+
+`https://gh-label-svg.now.sh/label.svg?color=E64A19&text=wow`
+
+![example label](https://gh-label-svg.now.sh/label.svg?color=E64A19&text=wow)

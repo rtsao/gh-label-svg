@@ -19,6 +19,7 @@ RUN mv ./Library/Fonts/SF-Pro-Text-Semibold.otf app/
 WORKDIR /app
 
 COPY package.json /app
+COPY package-lock.json /app
 RUN npm install
 
 COPY index.js /app

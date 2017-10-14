@@ -3,7 +3,6 @@ const {parse} = require('url');
 
 const opentype = require('opentype.js');
 const layer = require('color-composite');
-const stringify = require('color-stringify');
 const isDark = require('color-measure/is-dark');
 
 // rgba(27,31,35,0.12)
@@ -61,6 +60,9 @@ function hexToRGB(hex) {
     return void 0;
   }
   const num = parseInt(hex, 16);
+  if (Number.isNaN(num)) {
+    return void 0;
+  }
   return {
     space: 'rgb',
     values: [num >> 16, (num >> 8) & 255, num & 255],
@@ -78,7 +80,8 @@ function isDarkColor(rgb) {
 }
 
 function stringifyHex(color) {
-  return stringify(color, 'hex');
+  const [r, g, b] = color.values;
+  return `#${((b | g << 8 | r << 16) | 1 << 24).toString(16).slice(1)}`;
 }
 
 function calcShadow(color) {

@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 8
+branches:
+  only:
+  - master
+install:
+  - npm install now@canary now-replace -g
+script:
+  - APP_URL=$(now -t $NOW_TOKEN --public --docker) || { exit 1; }
+  - now scale $APP_URL 1 -t $NOW_TOKEN || { exit 1; }
+  - now-replace gh-label-svg $APP_URL -t $NOW_TOKEN
+env:
+  global:
+    secure: j22Aag9jWP7TVC8PPK7pPhYV0+n88uLF73xFPjGWqXzkFUksj1Z1uOrm8g7P3DIppYBuDtgoyZ8LPqy3uqP0+6oRjDzQA16kuoNVRYcxlY9179+lr8B2/nFcB7HbMDW6R8Afno2XpOkfqHMG6jSAhy+wcj2/aP8tc4WKK+uGB4jU7JxGmwQMiKWijk1CJxltoov4DBhM3/dfCunUV2UUuHf9G9xY8dOFQqKrL+fsBhXBlDL/CkblVEmHCe3SBSrTU4U5+HbQaSgO6rXh1j6SXPDLu3q/Y4+hP5A0A8RzNfs/hR+YZdhQ7trOxTxqAPRvSg5SBtC/u7SM8c8OsfDRLE4q/btSNT6bLWRlkJqO5nX9uhFm0ykVujrxeDyg0nooRG+MhFqlWkch7kIcAAjLHmgZbkcLjI76rT9idraR3ThcFva1SoJnjY6OyB4/kI2DX0HB+Hil0D0vNghAKxY3WwfNo1eTwLwjvJGeh9+eB5dT+8GMkysWSdafyhlxP6v6ngT6tCMCPxESVu58ze+clTFtYKJonoCCQN6atch4Fa+XcF7jlhFzHf6bXHLW6gKvcKZqsvAiKWPSGpXl/AX8I4CEykBZ8ZKCaHV/WhRBm7t33Zgiygc6s/zb451hLAzbFPQ1w4hlDBLtsptR3gt5trF9Z1/bqlglYzN0L0VWan4=

@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "color-composite": "^0.1.0",
-    "color-measure": "^1.0.1",
     "opentype.js": "^0.7.3"
   },
   "license": "MIT"

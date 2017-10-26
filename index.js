@@ -3,7 +3,6 @@ const {parse} = require('url');
 
 const opentype = require('opentype.js');
 const layer = require('color-composite');
-const isDark = require('color-measure/is-dark');
 
 // rgba(27,31,35,0.12)
 const BOX_SHADOW = {
@@ -32,7 +31,7 @@ const server = http.createServer((req, res) => {
           calcWidth(text),
           stringifyHex(rgb),
           calcShadow(rgb),
-          isDarkColor(rgb) ? '#fff' : '#000'
+          isLightColor(rgb) ? '#000' : '#fff'
         )
       );
     }
@@ -68,13 +67,13 @@ function hexToRGB(hex) {
   };
 }
 
-function isDarkColor(rgb) {
-  const [r, g, b] = rgb.values;
-  return isDark({
-    red: () => r,
-    green: () => g,
-    blue: () => b
-  });
+// http://24ways.org/2010/calculating-color-contrast
+// This is the same lightness algorithm as used on GitHub
+function isLightColor(color) {
+  const [r, g, b] = color.values;
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  // Note: the value 150 is hardcoded into GitHub
+  return yiq > 150;
 }
 
 function stringifyHex(color) {

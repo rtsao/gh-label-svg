@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
           calcWidth(text),
           stringifyHex(rgb),
           calcShadow(rgb),
-          isLightColor(rgb) ? '#000' : '#fff'
+          isDarkColor(rgb) ? '#fff' : '#000'
         )
       );
     }
@@ -69,11 +69,11 @@ function hexToRGB(hex) {
 
 // http://24ways.org/2010/calculating-color-contrast
 // This is the same lightness algorithm as used on GitHub
-function isLightColor(color) {
+function isDarkColor(color) {
   const [r, g, b] = color.values;
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   // Note: the value 150 is hardcoded into GitHub
-  return yiq > 150;
+  return yiq < 150;
 }
 
 function stringifyHex(color) {
